@@ -1,0 +1,27 @@
+# Tesseract properties
+tesseractPath=/usr/bin/tesseract
+language=eng
+pageSegMode=1
+extractAcroFormContent=true
+useNonSequentialParser=false
+extractAnnotationText=true
+sortByPosition=false
+extractUniqueInlineImagesOnly=true
+enableAutospace=true
+maxFileSizeToOcr=2147483647
+minFileSizeToOcr=0
+timeout=30
+suppressDuplicateOverlappingText=false
+#txt or hocr
+outputType=txt
+preserveInterwordSpacing=false
+
+# properties for image processing
+# to enable processing, set enableImageProcessing to 1
+enableImageProcessing=1
+ImageMagickPath=
+density=300
+depth=4
+colorspace=rgb
+filter=triangle
+resize=200
