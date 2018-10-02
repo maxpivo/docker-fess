@@ -12,6 +12,7 @@ RUN apt-get update && \
       imagemagick \
       procps \
       unoconv \
+      tesseract-ocr \
       ant \
       && \
     apt-get clean
@@ -30,7 +31,7 @@ RUN set -x && \
     rm -rf /tmp/elasticsearch-${ELASTIC_VERSION}.deb
 
 RUN set -x && \
-    wget --progress=dot:mega https://github.com/codelibs/fess/releases/download/fess-${FESS_VERSION}/fess-${FESS_VERSION}.deb -O /tmp/fess-${FESS_VERSION}.deb && \
+    wget --progress=dot:mega https://github.com/maxpivo/fess/releases/download/fess-${FESS_VERSION}/fess-${FESS_VERSION}.deb -O /tmp/fess-${FESS_VERSION}.deb && \
     dpkg -i /tmp/fess-${FESS_VERSION}.deb && \
     rm -rf /tmp/fess-${FESS_VERSION}.deb
 RUN ant -f /usr/share/fess/bin/plugin.xml -Dtarget.dir=/tmp \
@@ -44,7 +45,8 @@ RUN echo "export FESS_OVERRIDE_CONF_PATH=/opt/fess" >>  /usr/share/fess/bin/fess
 RUN apt-get remove -y ant
 
 COPY elasticsearch/config /etc/elasticsearch
-COPY fess/config /etc/fess
+COPY fess/config /user/share/fess
+COPY tesseract/config /usr/share/tesseract-ocr/tessdata/tessconfigs
 
 WORKDIR /usr/share/fess
 EXPOSE 9200 9300 8080
