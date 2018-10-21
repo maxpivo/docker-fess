@@ -48,6 +48,8 @@ RUN apt-get remove -y ant
 COPY elasticsearch/config /etc/elasticsearch
 COPY fess/config /user/share/fess
 
+RUN chown -R elasticesearch.elasticsearch /etc/elasticsearch/jvm.options
+
 WORKDIR /usr/share/fess
 EXPOSE 9200 9300 8080
 
